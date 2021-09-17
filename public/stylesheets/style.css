@@ -7,9 +7,10 @@ body {
   position: relative;
   max-width: 100%;
   height: 100%;
+  background-color: #f3f3f3;
 }
 
-main {
+.home {
   position: relative;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.unsplash.com/photo-1612795459707-1002f77720d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80");
@@ -22,4 +23,28 @@ main {
 
 .spacing {
   letter-spacing: 2px;
+}
+
+.btn-table {
+  background-color: #1ea064;
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  transition: all linear 0.3s;
+}
+
+tr,
+th,
+td {
+  padding: 1rem 1.5rem 1rem 1.5rem;
+}
+
+tbody tr:nth-child(even) {
+  background: rgb(209, 224, 248);
+}
+
+td {
+  text-align: justify;
 }

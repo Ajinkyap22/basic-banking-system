@@ -15,6 +15,10 @@ module.exports = router.get("/customers", userController.customers_get);
 module.exports = router.get("/profile/:id", userController.profile_get);
 
 // GET for transactions
+module.exports = router.get(
+  "/transactions",
+  transactionController.transactions_get
+);
 
 // GET for transfer money
 
