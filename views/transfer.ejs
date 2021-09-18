@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') -%>
+  </head>
+  <body>
+    <header><%- include('./partials/header') -%></header>
+
+    <main
+      class="
+        container
+        pt-3
+        d-flex
+        flex-column
+        justify-content-center
+        align-items-center
+      "
+    >
+      <div class="bg-white w-50 p-4 rounded shadow-sm mt-3">
+        <h1 class="text-center">
+          <i class="bi bi-arrow-left-right"></i> Transfer Money
+        </h1>
+
+        <% if(typeof error !== 'undefined'){ %>
+        <p class="text-danger pt-2"><%= error.message %></p>
+        <% } %>
+
+        <form action="" method="post">
+          <!-- sender -->
+          <div class="form-group py-2">
+            <label for="sender" class="py-2 fw-bold">From :</label>
+            <select
+              type="select"
+              id="sender"
+              name="sender"
+              class="form-control"
+              placeholder="Sender"
+              required
+            >
+              <option disabled selected>Select Sender</option>
+              <% users.forEach((user) => { %>
+              <option value="<%= user._id %>"><%= user.name %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <!-- receiver -->
+          <div class="form-group py-2">
+            <label for="receiver" class="py-2 fw-bold">To :</label>
+            <select
+              type="select"
+              id="receiver"
+              name="receiver"
+              class="form-control"
+              placeholder="receiver"
+              required
+            >
+              <option disabled selected>Select Receiver</option>
+              <% users.forEach((user) => { %>
+              <option value="<%= user._id %>"><%= user.name %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <!-- amount -->
+          <div class="form-group py-2">
+            <label for="amount" class="py-2 fw-bold">Amount :</label>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="e.g. 1000"
+              min="1"
+              required
+            />
+          </div>
+
+          <!-- buttons -->
+          <div class="py-3">
+            <button class="btn btn-table m-2">Submit</button>
+            <a href="/" class="link-secondary text-decoration-none m-2"
+              >Go Back</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

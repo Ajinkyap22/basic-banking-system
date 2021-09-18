@@ -37,8 +37,8 @@ function userCreate(name, email, balance, cb) {
   });
 }
 
-function transactionCreate(sender, receiver, amount, date, cb) {
-  const transactionDetail = { sender, receiver, amount, date };
+function transactionCreate(user, amount, date, cb) {
+  const transactionDetail = { user, amount, date };
 
   const transaction = new Transaction(transactionDetail);
 
@@ -70,15 +70,40 @@ function createTransactions(cb) {
   async.series(
     [
       (callback) =>
-        transactionCreate(users[0], users[1], 1000, Date.now(), callback),
+        transactionCreate(
+          { sender: users[0], receiver: users[1] },
+          1000,
+          Date.now(),
+          callback
+        ),
       (callback) =>
-        transactionCreate(users[2], users[3], 500, Date.now(), callback),
+        transactionCreate(
+          { sender: users[2], receiver: users[3] },
+          500,
+          Date.now(),
+          callback
+        ),
       (callback) =>
-        transactionCreate(users[4], users[0], 2500, Date.now(), callback),
+        transactionCreate(
+          { sender: users[4], receiver: users[0] },
+          2500,
+          Date.now(),
+          callback
+        ),
       (callback) =>
-        transactionCreate(users[1], users[3], 200, Date.now(), callback),
+        transactionCreate(
+          { sender: users[1], receiver: users[3] },
+          200,
+          Date.now(),
+          callback
+        ),
       (callback) =>
-        transactionCreate(users[2], users[4], 1250, Date.now(), callback),
+        transactionCreate(
+          { sender: users[2], receiver: users[4] },
+          1250,
+          Date.now(),
+          callback
+        ),
     ],
     cb
   );

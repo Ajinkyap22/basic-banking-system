@@ -21,5 +21,7 @@ module.exports = router.get(
 );
 
 // GET for transfer money
+module.exports = router.get("/transfer", transactionController.transfer_get);
 
 // POST for transfer money
+module.exports = router.post("/transfer", transactionController.transfer_post);
