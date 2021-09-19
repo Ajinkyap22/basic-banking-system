@@ -9,23 +9,25 @@
     <main class="container-fluid text-center pt-3">
       <h2 class="py-3">Transaction History</h2>
 
-      <table class="m-auto mt-3">
-        <tr>
-          <th>From</th>
-          <th>To</th>
-          <th>Amount</th>
-          <th>Date</th>
-        </tr>
+      <div class="table-responsive">
+        <table class="m-auto table align-middle mt-3">
+          <tr>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+          </tr>
 
-        <% transactions.forEach((transaction) => { %>
-        <tr>
-          <td><%= transaction.user.sender.name %></td>
-          <td><%= transaction.user.receiver.name %></td>
-          <td><%= transaction.amount %></td>
-          <td><%= transaction.date_formatted %></td>
-        </tr>
-        <% }) %>
-      </table>
+          <% transactions.forEach((transaction) => { %>
+          <tr>
+            <td><%= transaction.user.sender.name %></td>
+            <td><%= transaction.user.receiver.name %></td>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.date_formatted %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
     </main>
 
     <footer><%- include('./partials/footer') -%></footer>

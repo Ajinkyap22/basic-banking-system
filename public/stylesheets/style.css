@@ -13,9 +13,7 @@ body {
 .home {
   position: relative;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1612795459707-1002f77720d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80");
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80");
+    url("/images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
@@ -35,16 +33,12 @@ body {
   transition: all linear 0.3s;
 }
 
-tr,
-th,
-td {
-  padding: 1rem 1.8rem 1rem 1.8rem;
-}
-
 tbody tr:nth-child(even) {
   background: rgb(209, 224, 248);
 }
 
-td {
-  text-align: justify;
+@media only screen and (max-width: 768px) {
+  .form {
+    width: 80% !important;
+  }
 }

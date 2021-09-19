@@ -4,6 +4,8 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var compression = require("compression");
+var helmet = require("helmet");
 
 var indexRouter = require("./routes/routes");
 
@@ -24,6 +26,18 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression()); //Compress all routes
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "script-src": [
+        "'self'",
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js",
+      ],
+    },
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
