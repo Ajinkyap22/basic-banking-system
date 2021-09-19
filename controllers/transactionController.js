@@ -39,26 +39,39 @@ exports.transfer_get = async function (req, res, next) {
 exports.transfer_post = async function (req, res, next) {
   try {
     const users = await User.find().sort([["name", "ascending"]]);
-    const sender = User.findById(req.body.sender._id);
-    const receiver = User.findById(req.body.receiver._id);
 
     // check if sender === receiver
-    if (sender._id === receiver._id) {
+    if (req.body.sender === req.body.receiver) {
       const error = new Error("Sender cannot be the same as receiver");
-      res.render("transfer", { title: "Transfer Money", error, users });
+      return res.render("transfer", { title: "Transfer Money", error, users });
     }
+
+    function getUser(id) {
+      let promise = User.findById(id).exec();
+      return promise;
+    }
+
+    const sender = await getUser(req.body.sender).then((res) => {
+      return res;
+    });
+
+    const receiver = await getUser(req.body.receiver).then((res) => {
+      return res;
+    });
 
     //  check if balance is enough
     if (sender.balance < req.body.amount) {
       const error = new Error("Insufficient Balance");
-      res.render("transfer", { title: "Transfer Money", error, users });
+      return res.render("transfer", { title: "Transfer Money", error, users });
     }
+
+    let amount = +req.body.amount;
 
     // update balance of both
     User.findByIdAndUpdate(
       sender._id,
       {
-        $set: { balance: sender.balance - req.body.amount },
+        $set: { balance: sender.balance - amount },
       },
       {},
       function (err) {
@@ -69,15 +82,29 @@ exports.transfer_post = async function (req, res, next) {
     User.findByIdAndUpdate(
       receiver._id,
       {
-        $set: { balance: receiver.balance + req.body.amount },
+        $set: { balance: receiver.balance + amount },
       },
       {},
       function (err) {
         if (err) return next(err);
-
-        res.redirect("/transactions");
       }
     );
+
+    // create new transaction
+    const transaction = new Transaction({
+      user: {
+        sender: req.body.sender,
+        receiver: req.body.receiver,
+      },
+      amount: amount,
+      date: Date.now(),
+    });
+
+    await transaction.save((err) => {
+      if (err) return next(err);
+
+      res.redirect("/transactions");
+    });
   } catch (err) {
     return next(err);
   }

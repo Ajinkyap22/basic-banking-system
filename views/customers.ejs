@@ -14,7 +14,6 @@
           <th>Name</th>
           <th>E-mail</th>
           <th>Balance</th>
-          <th>Details</th>
           <th>Transfer</th>
         </tr>
 
@@ -24,14 +23,13 @@
           <td><%= user.email %></td>
           <td><%= user.balance %></td>
           <td>
-            <a href="/profile/<%=user._id%>" class="btn btn-table">Profile</a>
-          </td>
-          <td>
             <a href="/transfer" class="btn btn-table">Transfer Money</a>
           </td>
         </tr>
         <% }) %>
       </table>
     </main>
+
+    <footer><%- include('./partials/footer') -%></footer>
   </body>
 </html>
