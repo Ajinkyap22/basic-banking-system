@@ -11,9 +11,6 @@ router.get("/", function (req, res) {
 // GET for customers
 module.exports = router.get("/customers", userController.customers_get);
 
-// GET for profile
-module.exports = router.get("/profile/:id", userController.profile_get);
-
 // GET for transactions
 module.exports = router.get(
   "/transactions",

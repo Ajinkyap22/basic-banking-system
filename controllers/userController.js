@@ -9,5 +9,3 @@ exports.customers_get = async function (req, res, next) {
     return next(err);
   }
 };
-
-exports.profile_get = function (req, res) {};
