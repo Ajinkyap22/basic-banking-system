@@ -1,6 +1,6 @@
 # Basic Banking System
 
-> A Basic Banking System project which is the part of The Sparks Foundation's Web Developmnet Internship.
+> A Basic Banking System project which was part of The Sparks Foundation's Web Developmnet Internship.
 
 ## Table of contents
 
