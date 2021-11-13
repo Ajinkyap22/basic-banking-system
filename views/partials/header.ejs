@@ -44,6 +44,7 @@
       id="navbarNavDropdown"
     >
       <ul class="navbar-nav">
+        <% if (typeof user !== 'undefined') { %>
         <li class="nav-item px-3">
           <a class="nav-link text-dark" href="/">Home</a>
         </li>
@@ -61,6 +62,32 @@
             >Transaction History</a
           >
         </li>
+
+        <li class="nav-item px-3">
+          <a
+            class="nav-link btn btn-table text-light rounded-pill"
+            href="/logout"
+            >Logout</a
+          >
+        </li>
+        <% } else { %>
+        <li class="nav-item px-3">
+          <a
+            class="nav-link btn btn-table text-light rounded-pill"
+            href="/login"
+            >Login</a
+          >
+        </li>
+
+        <li class="nav-item px-3">
+          <a
+            class="nav-link btn btn-table text-light rounded-pill"
+            href="/signup"
+            >Sign up</a
+          >
+        </li>
+
+        <% } %>
       </ul>
     </div>
   </div>

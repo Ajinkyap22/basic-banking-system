@@ -5,11 +5,27 @@ const transactionController = require("../controllers/transactionController");
 
 /* GET home page. */
 router.get("/", function (req, res) {
-  res.render("index", { title: "Home" });
+  console.log(res.locals.currentUser);
+  res.render("index", { title: "Home", user: res.locals.currentUser });
 });
 
 // GET for customers
 module.exports = router.get("/customers", userController.customers_get);
+
+// GET signup
+module.exports = router.get("/signup", userController.signup_get);
+
+// POST signup
+module.exports = router.post("/signup", userController.signup_post);
+
+// GET login
+module.exports = router.get("/login", userController.login_get);
+
+// POST login
+module.exports = router.post("/login", userController.login_post);
+
+// POST logout
+module.exports = router.get("logout", userController.logout);
 
 // GET for transactions
 module.exports = router.get(

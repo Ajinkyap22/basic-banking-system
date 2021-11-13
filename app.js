@@ -4,8 +4,12 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var compression = require("compression");
-var helmet = require("helmet");
+const compression = require("compression");
+const helmet = require("helmet");
+const session = require("express-session");
+const passport = require("passport");
+const bcrypt = require("bcryptjs");
+const LocalStrategy = require("passport-local").Strategy;
 
 var indexRouter = require("./routes/routes");
 
@@ -17,6 +21,8 @@ const mongoDB = process.env.MONGO_URL;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
+
+const User = require("./models/user");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -39,6 +45,54 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
+
+// passport setup
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    (username, password, done) => {
+      User.findOne({ email: username }, (err, user) => {
+        if (err) return done(err);
+
+        if (!user) return done(null, false, "Incorrect email");
+
+        bcrypt.compare(password, user.password, (err, res) => {
+          if (res) return done(null, user);
+          else return done(null, false, { message: "Incorrect password" });
+        });
+      });
+    }
+  )
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.use("/", indexRouter);
 
