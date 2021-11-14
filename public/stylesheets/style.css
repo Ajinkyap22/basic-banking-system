@@ -27,6 +27,9 @@ body {
   background-color: #1ea064;
   color: white;
 }
+.btn-outline-table {
+  border-color: #1ea064;
+}
 
 .btn:hover {
   transform: scale(1.05);

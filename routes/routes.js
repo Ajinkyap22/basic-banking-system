@@ -25,7 +25,7 @@ module.exports = router.get("/login", userController.login_get);
 module.exports = router.post("/login", userController.login_post);
 
 // POST logout
-module.exports = router.get("logout", userController.logout);
+module.exports = router.get("/logout", userController.logout);
 
 // GET for transactions
 module.exports = router.get(
