@@ -13,16 +13,12 @@
         <table class="m-auto mt-3 table align-middle">
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">Balance</th>
             <th scope="col">Transfer</th>
           </tr>
 
           <% users.forEach((user) => { %>
           <tr>
             <td><%= user.name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.balance %></td>
             <td>
               <a href="/transfer" class="btn btn-table">Transfer Money</a>
             </td>

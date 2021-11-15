@@ -5,9 +5,15 @@ const passport = require("passport");
 
 exports.customers_get = async function (req, res, next) {
   try {
+    if (!res.locals.currentUser) res.redirect("/login");
+
     const users = await User.find().sort([["name", "ascending"]]);
 
-    res.render("customers", { title: "Our Customers", users });
+    res.render("customers", {
+      title: "Our Customers",
+      users,
+      user: res.locals.currentUser,
+    });
   } catch (err) {
     return next(err);
   }

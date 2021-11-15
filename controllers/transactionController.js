@@ -3,6 +3,8 @@ const User = require("../models/user");
 
 exports.transactions_get = function (req, res, next) {
   try {
+    if (!res.locals.currentUser) res.redirect("/login");
+
     Transaction.find()
       .sort([["date", "descending"]])
       .populate({
@@ -19,6 +21,7 @@ exports.transactions_get = function (req, res, next) {
         res.render("transactions", {
           title: "Transaction History",
           transactions,
+          user: res.locals.currentUser,
         });
       });
   } catch (err) {
@@ -28,9 +31,15 @@ exports.transactions_get = function (req, res, next) {
 
 exports.transfer_get = async function (req, res, next) {
   try {
+    if (!res.locals.currentUser) res.redirect("/login");
+
     const users = await User.find().sort([["name", "ascending"]]);
 
-    res.render("transfer", { title: "Transfer Money", users });
+    res.render("transfer", {
+      title: "Transfer Money",
+      users,
+      user: res.locals.currentUser,
+    });
   } catch (err) {
     return next(err);
   }
@@ -40,18 +49,12 @@ exports.transfer_post = async function (req, res, next) {
   try {
     const users = await User.find().sort([["name", "ascending"]]);
 
-    // check if sender === receiver
-    if (req.body.sender === req.body.receiver) {
-      const error = new Error("Sender cannot be the same as receiver");
-      return res.render("transfer", { title: "Transfer Money", error, users });
-    }
-
     function getUser(id) {
       let promise = User.findById(id).exec();
       return promise;
     }
 
-    const sender = await getUser(req.body.sender).then((res) => {
+    const sender = await getUser(res.locals.currentUser._id).then((res) => {
       return res;
     });
 
@@ -62,7 +65,12 @@ exports.transfer_post = async function (req, res, next) {
     //  check if balance is enough
     if (sender.balance < req.body.amount) {
       const error = new Error("Insufficient Balance");
-      return res.render("transfer", { title: "Transfer Money", error, users });
+      return res.render("transfer", {
+        title: "Transfer Money",
+        error,
+        users,
+        user: res.locals.currentUser,
+      });
     }
 
     let amount = +req.body.amount;
@@ -93,7 +101,7 @@ exports.transfer_post = async function (req, res, next) {
     // create new transaction
     const transaction = new Transaction({
       user: {
-        sender: req.body.sender,
+        sender: res.locals.currentUser,
         receiver: req.body.receiver,
       },
       amount: amount,

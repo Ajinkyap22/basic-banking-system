@@ -27,11 +27,17 @@ body {
   background-color: #1ea064;
   color: white;
 }
-.btn-outline-table {
-  border-color: #1ea064;
+
+.btn-outline-dark:hover {
+  color: white !important;
 }
 
 .btn:hover {
+  transform: scale(1.05);
+  transition: all linear 0.3s;
+}
+
+.nav-link:hover {
   transform: scale(1.05);
   transition: all linear 0.3s;
 }

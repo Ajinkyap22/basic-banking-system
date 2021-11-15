@@ -26,24 +26,6 @@
         <% } %>
 
         <form action="" method="post">
-          <!-- sender -->
-          <div class="form-group py-2">
-            <label for="sender" class="py-2 fw-bold">From :</label>
-            <select
-              type="select"
-              id="sender"
-              name="sender"
-              class="form-control"
-              placeholder="Sender"
-              required
-            >
-              <option disabled selected>Select Sender</option>
-              <% users.forEach((user) => { %>
-              <option value="<%= user._id %>"><%= user.name %></option>
-              <% }) %>
-            </select>
-          </div>
-
           <!-- receiver -->
           <div class="form-group py-2">
             <label for="receiver" class="py-2 fw-bold">To :</label>
@@ -56,8 +38,12 @@
               required
             >
               <option disabled selected>Select Receiver</option>
-              <% users.forEach((user) => { %>
-              <option value="<%= user._id %>"><%= user.name %></option>
+              <% users.forEach((customer) => { %>
+              <!-- prettier-ignore -->
+              <% if(customer.email != user.email) { %>
+              <option value="<%= customer._id %>"><%= customer.name %></option>
+              <!-- prettier-ignore -->
+              <% } %>
               <% }) %>
             </select>
           </div>
