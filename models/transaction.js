@@ -9,6 +9,7 @@ const TransactionSchema = new Schema({
   },
   amount: { type: Number, required: true },
   date: { type: Date, required: true },
+  description: { type: String, default: "" },
 });
 
 TransactionSchema.virtual("date_formatted").get(function () {

@@ -5,7 +5,12 @@ exports.transactions_get = function (req, res, next) {
   try {
     if (!res.locals.currentUser) res.redirect("/login");
 
-    Transaction.find()
+    Transaction.find({
+      $or: [
+        { "user.sender": res.locals.currentUser._id },
+        { "user.receiver": res.locals.currentUser._id },
+      ],
+    })
       .sort([["date", "descending"]])
       .populate({
         path: "user",
@@ -104,6 +109,7 @@ exports.transfer_post = async function (req, res, next) {
         sender: res.locals.currentUser,
         receiver: req.body.receiver,
       },
+      description: req.body.description || "",
       amount: amount,
       date: Date.now(),
     });

@@ -16,6 +16,7 @@
             <th scope="col">To</th>
             <th scope="col">Amount</th>
             <th scope="col">Date</th>
+            <th scope="col">Description</th>
           </tr>
 
           <% transactions.forEach((transaction) => { %>
@@ -24,6 +25,7 @@
             <td><%= transaction.user.receiver.name %></td>
             <td><%= transaction.amount %></td>
             <td><%= transaction.date_formatted %></td>
+            <td><%= transaction.description || 'N/A' %></td>
           </tr>
           <% }) %>
         </table>

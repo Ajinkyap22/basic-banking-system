@@ -48,6 +48,6 @@ tbody tr:nth-child(even) {
 
 @media only screen and (max-width: 768px) {
   .form {
-    width: 80% !important;
+    width: 85% !important;
   }
 }

@@ -28,7 +28,9 @@
         <form action="" method="post">
           <!-- receiver -->
           <div class="form-group py-2">
-            <label for="receiver" class="py-2 fw-bold">To :</label>
+            <label for="receiver" class="py-2 fw-bold"
+              >To <span class="text-danger">*</span>
+            </label>
             <select
               type="select"
               id="receiver"
@@ -50,7 +52,9 @@
 
           <!-- amount -->
           <div class="form-group py-2">
-            <label for="amount" class="py-2 fw-bold">Amount :</label>
+            <label for="amount" class="py-2 fw-bold"
+              >Amount <span class="text-danger">*</span></label
+            >
             <input
               type="number"
               name="amount"
@@ -58,6 +62,18 @@
               placeholder="e.g. 1000"
               min="1"
               required
+            />
+          </div>
+
+          <div class="form-group py-2">
+            <label for="description" class="py-2 fw-bold"
+              >Description (Optinal)</label
+            >
+            <input
+              type="text"
+              name="description"
+              class="form-control"
+              placeholder="What is this payment for?"
             />
           </div>
 

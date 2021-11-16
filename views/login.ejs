@@ -10,12 +10,32 @@
       class="
         container-fluid
         d-flex
+        flex-column
         mt-5
         justify-content-center
         align-items-center
       "
     >
-      <section class="w-50 m-auto p-3 shadow bg-white">
+      <section class="mb-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          aria-hidden="true"
+          role="img"
+          width="50"
+          height="50"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 24 25"
+          class="mb-3"
+        >
+          <path
+            d="M9 7h6v2h-2v8h-2V9H9V7m3-5a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8z"
+            fill="currentColor"
+          />
+        </svg>
+        <span class="display-6">TSF Bank</span>
+      </section>
+      <section class="w-50 m-auto p-3 shadow bg-white form">
         <h1 class="text-center">Log in</h1>
         <h6 class="text-center">
           Don't have an account?
@@ -39,14 +59,14 @@
           <% } %>
 
           <div class="form-group py-2">
-            <label class="py-1" for="email"
+            <label class="py-1 fw-bold" for="email"
               >E-mail <span class="text-danger">*</span></label
             >
             <input type="email" name="email" class="form-control" required />
           </div>
 
           <div class="form-group py-2">
-            <label class="py-1" for="password"
+            <label class="py-1 fw-bold" for="password"
               >Password <span class="text-danger">*</span></label
             >
             <input
