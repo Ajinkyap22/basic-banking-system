@@ -29,6 +29,9 @@ exports.signup_post = [
   body("email", "Email must be at least 3 characters long.")
     .trim()
     .isLength({ min: 3 }),
+  body("balance", "Starting balance cannot be more than 10000.")
+    .trim()
+    .isLength({ max: 10000 }),
   body("password", "Password must be at least 6 characters long.")
     .trim()
     .isLength({ min: 6 })

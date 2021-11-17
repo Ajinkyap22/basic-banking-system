@@ -6,7 +6,7 @@
   <body>
     <header><%- include('./partials/header') -%></header>
 
-    <main
+    <section
       class="
         container-fluid
         h-100
@@ -14,8 +14,7 @@
         align-items-center
         justify-content-center
         flex-column
-        pb-5
-        home
+        hero
       "
     >
       <div class="pb-3 text-center text-capitalize">
@@ -26,7 +25,7 @@
         >
       </div>
 
-      <div class="my-3 text-center pb-5">
+      <div class="my-3 text-center mb-5">
         <% if (!user) { %>
         <a href="/signup" class="btn btn-light m-2 py-2">
           <i class="bi bi-bookmark-star"></i> Become a Member
@@ -34,7 +33,7 @@
         <a href="/login" class="btn btn-outline-light m-2 py-2">
           <i class="bi bi-box-arrow-in-right"></i> Login
         </a>
-        <% }else { %>
+        <% } else { %>
 
         <a href="/transfer" class="btn btn-light m-2 py-2">
           <i class="bi bi-arrow-down-up"></i> Transfer Money
@@ -44,7 +43,16 @@
         </a>
         <% } %>
       </div>
-    </main>
+    </section>
+
+    <!-- features & services -->
+    <!-- instant transactions - send & receive money in a flash -->
+    <!-- transaction history - log of all your transaactions to keep track -->
+    <!-- transaction descriptions - descriptions to keep note of the subject of transaction -->
+
+    <!-- faq -->
+
+    <section class="py-3 text-center"></section>
 
     <footer><%- include('./partials/footer') -%></footer>
   </body>

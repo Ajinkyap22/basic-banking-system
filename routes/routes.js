@@ -5,7 +5,6 @@ const transactionController = require("../controllers/transactionController");
 
 /* GET home page. */
 router.get("/", function (req, res) {
-  console.log(res.locals.currentUser);
   res.render("index", { title: "Home", user: res.locals.currentUser });
 });
 
