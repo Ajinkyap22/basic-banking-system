@@ -19,6 +19,9 @@ body {
   color: white;
 }
 
+.services {
+}
+
 .spacing {
   letter-spacing: 2px;
 }
@@ -26,6 +29,10 @@ body {
 .btn-table {
   background-color: #1ea064;
   color: white;
+}
+
+.accordion-button {
+  background-color: #f3f3f3;
 }
 
 .btn-outline-dark:hover {
