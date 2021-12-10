@@ -98,12 +98,17 @@ exports.signup_post = [
 ];
 
 exports.login_get = function (req, res) {
-  res.render("login", { title: "Log In" });
+  const errors = req.flash().error || [];
+  res.render("login", {
+    title: "Log In",
+    errors,
+  });
 };
 
 exports.login_post = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/login",
+  failureFlash: true,
 });
 
 exports.logout = function (req, res) {

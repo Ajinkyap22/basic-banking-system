@@ -10,6 +10,8 @@ const session = require("express-session");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
+require("./config/passport")(passport);
 
 var indexRouter = require("./routes/routes");
 
@@ -45,6 +47,7 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash());
 
 // passport setup
 passport.use(
@@ -67,16 +70,6 @@ passport.use(
     }
   )
 );
-
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
 
 app.use(
   session({

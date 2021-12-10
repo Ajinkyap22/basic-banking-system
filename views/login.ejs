@@ -52,15 +52,20 @@
 
           <!-- prettier-ignore -->
           <% if(typeof errors !== 'undefined'){ %>
-          <% errors.forEach((error) => { %>
+            <% errors.forEach((error) => { %>
           <p class="text-danger pt-2"><%= error.message || error %></p>
           <% }) %>
+          <!-- prettier-ignore -->
+
+          <% if(typeof message !== 'undefined'){ %>
+          <p class="text-danger pt-2"><%= message %></p>
+          <% } %>
           <!-- prettier-ignore -->
           <% } %>
 
           <div class="form-group py-2">
             <label class="py-1 fw-bold" for="email"
-              >E-mail <span class="text-danger">*</span></label
+              >Email <span class="text-danger">*</span></label
             >
             <input type="email" name="email" class="form-control" required />
           </div>

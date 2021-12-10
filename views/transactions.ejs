@@ -9,6 +9,7 @@
     <main class="container-fluid text-center pt-3">
       <h2 class="py-3">Transaction History</h2>
 
+      <% if (transactions.length > 0 ) { %>
       <div class="table-responsive">
         <table class="m-auto table align-middle mt-3">
           <tr>
@@ -30,6 +31,12 @@
           <% }) %>
         </table>
       </div>
+      <% } else { %>
+      <h6 class="py-3">
+        You haven't made any transactions yet, why not make one?
+      </h6>
+      <a href="/transfer" class="btn btn-table">Transfer Money</a>
+      <% } %>
     </main>
 
     <footer><%- include('./partials/footer') -%></footer>

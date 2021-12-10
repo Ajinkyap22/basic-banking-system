@@ -19,7 +19,14 @@ body {
   color: white;
 }
 
-.services {
+.copyright {
+  background-color: #37383d;
+  color: white;
+}
+
+.copyright p {
+  color: #aaa;
+  font-size: 0.9rem;
 }
 
 .spacing {
@@ -56,5 +63,16 @@ tbody tr:nth-child(even) {
 @media only screen and (max-width: 768px) {
   .form {
     width: 85% !important;
+  }
+
+  .align-self-center {
+    margin: 0.3rem auto;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .service {
+    margin-bottom: 1.5rem !important;
+    width: 80% !important;
   }
 }

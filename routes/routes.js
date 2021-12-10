@@ -2,6 +2,15 @@ var express = require("express");
 var router = express.Router();
 const userController = require("../controllers/userController");
 const transactionController = require("../controllers/transactionController");
+const passport = require("passport");
+
+function verifyUser(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/");
+  }
+}
 
 /* GET home page. */
 router.get("/", function (req, res) {
@@ -9,7 +18,11 @@ router.get("/", function (req, res) {
 });
 
 // GET for customers
-module.exports = router.get("/customers", userController.customers_get);
+module.exports = router.get(
+  "/customers",
+  verifyUser,
+  userController.customers_get
+);
 
 // GET signup
 module.exports = router.get("/signup", userController.signup_get);
