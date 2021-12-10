@@ -88,11 +88,13 @@
       </div>
 
       <% if (!user) { %>
-      <button class="btn btn-outline-dark fw-bold py-3">Join Us Now</button>
+      <a class="btn btn-outline-dark fw-bold py-3" href="/signup"
+        >Join Us Now</a
+      >
       <% } else { %>
-      <button class="btn btn-outline-dark fw-bold py-3">
+      <a class="btn btn-outline-dark fw-bold py-3" href="/transfer">
         Make a Transaction
-      </button>
+      </a>
       <% } %>
     </section>
 
